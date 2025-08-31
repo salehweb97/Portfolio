@@ -1,0 +1,14 @@
+{
+    "app.name": "Full-Stack Laravel Developer",
+    "nav.home": "Home",
+    "nav.projects": "Projects",
+    "nav.about": "About",
+    "nav.blog": "Blog",
+    "nav.contact": "Contact",
+    "cta.contact": "Contact Me",
+    "cta.viewWork": "View Work",
+    "hero.title": "I build robust, scalable web apps with Laravel & Vue.",
+    "hero.subtitle": "From backend architecture to delightful UIs, I ship production-ready software.",
+    "footer.rights": "All rights reserved."
+}
+

@@ -1,4 +1,87 @@
 <script setup lang="ts">
+import { computed, inject } from 'vue';
+import type { Translations } from '../lib/i18n';
+
+const i18n = inject<any>('i18n');
+const t = (key: string, fallback?: string) => i18n?.t(key, fallback) ?? key;
+const isRtl = computed(() => i18n?.isRtl ?? false);
+</script>
+
+<template>
+    <div :dir="isRtl ? 'rtl' : 'ltr'" class="min-h-screen bg-zinc-950 text-zinc-100">
+        <header class="sticky top-0 z-20 backdrop-blur bg-zinc-950/70 border-b border-zinc-800">
+            <div class="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
+                <div class="font-semibold">{{ t('app.name') }}</div>
+                <nav class="flex gap-6 text-sm text-zinc-300">
+                    <a href="#projects" class="hover:text-white">{{ t('nav.projects') }}</a>
+                    <a href="#about" class="hover:text:white">{{ t('nav.about') }}</a>
+                    <a href="#contact" class="hover:text:white">{{ t('nav.contact') }}</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="mx-auto max-w-6xl px-4">
+            <section class="py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+                <div class="space-y-6">
+                    <h1 class="text-3xl md:text-5xl font-bold leading-tight">
+                        {{ t('hero.title') }}
+                    </h1>
+                    <p class="text-zinc-300 text-base md:text-lg">
+                        {{ t('hero.subtitle') }}
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#contact" class="px-4 py-2 rounded-md bg-white text-zinc-950 font-medium">
+                            {{ t('cta.contact') }}
+                        </a>
+                        <a href="#projects" class="px-4 py-2 rounded-md bg-zinc-800 text-white font-medium">
+                            {{ t('cta.viewWork') }}
+                        </a>
+                    </div>
+                </div>
+                <div class="justify-self-center">
+                    <div class="size-40 md:size-56 rounded-full bg-gradient-to-tr from-fuchsia-500 to-sky-400" />
+                </div>
+            </section>
+
+            <section id="projects" class="py-16 border-t border-zinc-800">
+                <h2 class="text-xl md:text-2xl font-semibold mb-6">Featured Projects</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <article v-for="n in 3" :key="n" class="rounded-lg border border-zinc-800 p-4 bg-zinc-900/40">
+                        <div class="aspect-video rounded-md bg-zinc-800 mb-3" />
+                        <h3 class="font-semibold mb-1">Project {{ n }}</h3>
+                        <p class="text-sm text-zinc-400">Short summary about impact and tech.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="about" class="py-16 border-t border-zinc-800">
+                <h2 class="text-xl md:text-2xl font-semibold mb-6">About</h2>
+                <p class="text-zinc-300 max-w-3xl">
+                    Senior full-stack Laravel developer. This is placeholder text for biography and skills.
+                </p>
+            </section>
+
+            <section id="contact" class="py-16 border-t border-zinc-800">
+                <h2 class="text-xl md:text-2xl font-semibold mb-6">Contact</h2>
+                <form class="grid gap-3 max-w-xl">
+                    <input class="px-3 py-2 rounded-md bg-zinc-900 border border-zinc-800" placeholder="Your name" />
+                    <input class="px-3 py-2 rounded-md bg-zinc-900 border border-zinc-800" placeholder="Email" type="email" />
+                    <textarea class="px-3 py-2 rounded-md bg-zinc-900 border border-zinc-800" placeholder="Message" rows="5" />
+                    <button type="button" class="px-4 py-2 rounded-md bg-white text-zinc-950 font-medium w-fit">Send</button>
+                </form>
+            </section>
+        </main>
+
+        <footer class="border-t border-zinc-800 py-8 text-sm text-zinc-400">
+            <div class="mx-auto max-w-6xl px-4">{{ t('footer.rights') }}</div>
+        </footer>
+    </div>
+</template>
+
+<style scoped>
+</style>
+
+<script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
 </script>
 
